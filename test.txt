@@ -1,0 +1,15 @@
+{
+
+  "noReturn": false,
+
+  "truespeak": "apple/orange has bitdepth = 256",
+
+  "tags": [
+
+    "string"
+
+  ],
+
+  "skipStore": false
+
+}

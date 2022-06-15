@@ -1,0 +1,177 @@
+@import "~@blueprintjs/core/lib/scss/variables";
+$imgpath: "../img";
+$bkcolor: #c5e0e1;
+// $bkcolor: #fafafa;
+// $bkcolor: darkslateblue;
+
+body{
+	background-color:$bkcolor;
+	line-height: 1.5;
+	color: #000000;
+	font-family: Helvetica,Arial,sans-serif;
+}
+.main-view{
+	z-index: 1;	
+	display: flex;
+	align-items: center;
+	justify-content: center;	
+	margin: auto;
+	width: 100%;
+}
+
+.ui-container{
+	border:  solid 1px black;
+	display: flex;
+	padding: .4em;
+	width: 60vw;
+	height: 60vh;
+}
+
+.navbar{
+	padding-left: 9px;
+	padding-right: 9px;
+}
+
+.container{
+	display: inline-block;
+	width: 100%;
+	margin: auto;
+}
+
+.container > a, p{
+	width: 100%;
+	display: inherit;
+	text-align: center;
+	// margin-bottom: 1ch;
+}
+
+.svgtest{
+	border:  solid 1px black;
+}
+
+.spacer{
+	height: 1em;
+}
+
+.fakelink{
+	color: black;
+	text-decoration: none;
+	cursor:pointer;
+}
+
+.fakelink:hover{
+	color: blue;
+	text-decoration: underline;
+}
+
+.sidemenu{
+	// display: flex;
+	float: left;
+	padding-left:8px;
+	padding-top:8px;
+}
+.sidemenu > li{
+	width: 20px;
+}
+
+a{
+  color: black;
+  text-decoration: none;
+}
+
+a strong{
+  color: inherit;
+}
+
+a:hover{
+  color: blue;
+  text-decoration: underline;
+}
+
+ul{
+    padding: 0px;
+    margin: auto;
+}
+
+li{
+    list-style: none;
+    border-bottom: .05em solid black;
+}
+
+li.post-min:first-child{
+    // margin-top: 2em;
+}
+
+li.post-max{
+    padding: 5px;
+}
+
+.min{
+	text-align: left;
+}
+
+.min.heading{
+    margin: 0px;
+    margin-bottom: 3px;
+}
+.min.link{
+
+}
+.min.desc{
+    margin: 0px;
+    margin-top: 3px;
+    color: #505050;
+}
+.min.date{
+    margin: 0px;
+    margin-top: 3px;
+    color: #505050;
+}
+
+/* min post card styling */
+.post{ 
+    border-bottom: .05em dotted black;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.post-min{
+    padding-bottom: 5px;
+    padding-top: 5px;
+    /*margin: 7px;*/ 
+}
+.post-min:hover{
+    cursor: pointer;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  margin-top: 1em;
+  font-size: 1.5em;
+}
+
+h3 {
+  margin-top: 1.2em;
+  font-size: 1.25em;
+}
+
+h4, h5, h6 {
+  margin-top: 1em;
+  font-size: 1em;
+}
+
+ul, ol, dl {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-bottom: .5em;
+}

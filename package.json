@@ -1,0 +1,38 @@
+{
+  "name": "true",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.js",
+  "scripts": {
+    "build": "webpack --mode development",
+    "prod": "webpack --mode production",
+    "serve": "webpack serve --mode development",
+    "test": "",
+    "clean": ""
+  },
+  "author": "Ollie",
+  "license": "GPL3",
+  "dependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "@blueprintjs/core": "^4.5.0",
+    "@blueprintjs/icons": "^4.3.0",
+    "@blueprintjs/select": "^4.4.0",
+    "@blueprintjs/table": "^4.3.0",
+    "@svgdotjs/svg.js": "^3.1.2",
+    "babel-loader": "^8.2.5",
+    "css-loader": "^6.7.1",
+    "raviger": "^4.1.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "sass": "^1.51.0",
+    "sass-loader": "^13.0.0",
+    "socket.io-client": "^4.5.1",
+    "style-loader": "^3.3.1",
+    "terser-webpack-plugin": "^5.3.1",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.8.1"
+  }
+}
