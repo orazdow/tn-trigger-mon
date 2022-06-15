@@ -7,10 +7,15 @@ import SVGbar from './svgbar.js';
 
 const map = {};
 
-const SVGList = forwardRef((props, refList) =>{
+const testdata = {
+	id: '1234', name:'test', 
+	truenumbers: [{_id: '888', tspeak:'...', subject:'...'}]
+};
+
+const SVGList = forwardRef((props, refList)=>{
 	refList.current = [];
 
-	const list = props.entries.map((el) => {
+	const list = props.entries.map((el)=>{
 		return <SVGbar  key={el[1].id} 
 						data={el[1]}
 						ref={(el) => refList.current.push(el)}
@@ -22,10 +27,10 @@ const SVGList = forwardRef((props, refList) =>{
 	return( <div style={{padding: '.1rem'}} className={Classes.LIST}>
 			<ul>{list}</ul>
 			</div>
-		);
-});
+	);
+})
 
-const dispatchDisplay = (reflist, postcb)=>{
+function dispatchDisplay(reflist){
 	for(let el of reflist.current){
 		if(el){
 			if(el.props.data.dispatch){
@@ -33,8 +38,10 @@ const dispatchDisplay = (reflist, postcb)=>{
 			}
 		}
 	}
-	postcb();
-};
+	for(let key in map){
+		map[key].dispatch = false;
+	}
+}
 
 function Main(){
 
@@ -49,14 +56,19 @@ function Main(){
 
 	useEffect(()=>{
 		connect(dataCb);
+		document.addEventListener('keydown',(e)=>{
+			if(e.key == 't') dataCb(testdata);
+		});
+		document.querySelector('#clearbutton').onclick = (e)=>{
+			for(let key in map){
+				delete map[key];
+			}
+			setEntries(Object.entries(map));
+		}
 	},[]);
 
 	useEffect(()=>{
-		dispatchDisplay(listref,()=>{
-			for(let key in map){
-				map[key].dispatch = false;
-			}	
-		});	
+		dispatchDisplay(listref);	
 	},[entries]);
 
 
@@ -64,7 +76,7 @@ function Main(){
 
 		<div className="ui">    
 		<div className="spacer"></div>
-		<Card interactive={false} elevation={Elevation.TWO} style={{padding: '0px', minHeight:'20vh'}}>		
+		<Card interactive={false} elevation={Elevation.TWO} style={{padding: '0px', minHeight:'30vh'}}>		
 		<Navbar width="600px"/>
 		<SVGList entries={entries} ref={listref}/>
 		</Card>	
