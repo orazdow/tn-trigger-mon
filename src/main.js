@@ -7,10 +7,13 @@ import SVGbar from './svgbar.js';
 
 const map = {};
 
-const testdata = {
-	id: '1234', name:'test', 
-	truenumbers: [{_id: '888', tspeak:'...', subject:'...'}]
-};
+function testdata(){
+	return {id: '1234', name:'test', 
+	truenumbers: [{	id: '888', 
+					tspeak: String.fromCharCode(Math.random()*50+50), 
+					subject:'...'}]
+	};
+}
 
 const SVGList = forwardRef((props, refList)=>{
 	refList.current = [];
@@ -19,8 +22,8 @@ const SVGList = forwardRef((props, refList)=>{
 		return <SVGbar  key={el[1].id} 
 						data={el[1]}
 						ref={(el) => refList.current.push(el)}
-						width="600" 
-						height="50" 
+						width="800" 
+						height="60" 
 						style={{borderBottom:'1px solid black'}}/>
 	});
 
@@ -32,11 +35,9 @@ const SVGList = forwardRef((props, refList)=>{
 
 function dispatchDisplay(reflist){
 	for(let el of reflist.current){
-		if(el){
-			if(el.props.data.dispatch){
-				el.addRect();
-			}
-		}
+		if(el && el.props.data.dispatch){
+			el.addRect(el.props.data);
+		}	
 	}
 	for(let key in map){
 		map[key].dispatch = false;
@@ -56,9 +57,11 @@ function Main(){
 
 	useEffect(()=>{
 		connect(dataCb);
+
 		document.addEventListener('keydown',(e)=>{
-			if(e.key == 't') dataCb(testdata);
+			if(e.key == 't') dataCb(testdata());
 		});
+
 		document.querySelector('#clearbutton').onclick = (e)=>{
 			for(let key in map){
 				delete map[key];
@@ -77,7 +80,7 @@ function Main(){
 		<div className="ui">    
 		<div className="spacer"></div>
 		<Card interactive={false} elevation={Elevation.TWO} style={{padding: '0px', minHeight:'30vh'}}>		
-		<Navbar width="600px"/>
+		<Navbar width="800px"/>
 		<SVGList entries={entries} ref={listref}/>
 		</Card>	
 		</div>
