@@ -10,7 +10,7 @@ const map = {};
 function testdata(){
 	return {id: '1234', name:'test', 
 	truenumbers: [{	id: '888', 
-					tspeak: String.fromCharCode(Math.random()*50+50), 
+					tspeak: String.fromCharCode(Math.random()*50+60)+' has x = y', 
 					subject:'...'}]
 	};
 }

@@ -1,0 +1,31 @@
+{
+	"noReturn": false,
+	"truenumbers": [
+		{
+			"subject": "orange",
+			"property": "length",
+			"tags": [],
+			"value": "4 ft"
+		},
+		{
+			"subject": "orange",
+			"property": "weight",
+			"tags": [],
+			"value": "12 oz"
+		},
+		{
+			"subject": "orange",
+			"property": "weight",
+			"tags": [],
+			"value": "12 oz"
+		},
+		{
+			"subject": "orange",
+			"property": "weight",
+			"tags": [],
+			"value": "12 oz"
+		}
+
+	],
+	"skipStore": false
+}
