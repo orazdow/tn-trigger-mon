@@ -2,11 +2,15 @@ import React, {useEffect, useRef, useState, forwardRef} from 'react';
 import { Button, Card, Elevation, Classes } from "@blueprintjs/core";
 import Navbar from './navbar.js';
 import SVGbar from './svgbar.js';
-import connect from './connect.js';
+import connect, {getTriggers} from './connect.js';
 import testEvent from './test.js';
 import Readout from './readout.js';
 
 const map = {};
+const glob = {
+	triggers: undefined,
+	listlen: 0
+};
 
 const SVGList = forwardRef((props, refList)=>{
 	refList.current = [];
@@ -58,6 +62,14 @@ function Main(){
 
 	useEffect(()=>{
 		dispatchDisplay(listref);	
+		if(entries.length != glob.listlen){
+			glob.listlen = entries.length;
+			if(glob.listlen)
+			getTriggers().then((res)=>{
+					glob.triggers = res;
+					console.log(res);
+			});
+		}
 	},[entries]);
 
 	useEffect(()=>{
@@ -79,7 +91,10 @@ function Main(){
 					style={{padding: '0px', minHeight:'30vh'}}>		
 				<Navbar width="800px"/>
 				<SVGList width={800} height={65} entries={entries} ref={listref} cb={readoutCb}/>
-				{readoutData.id ? <Readout data={readoutData} cb={readoutCb}/> : null}
+				{readoutData.id ? 
+					<Readout data={readoutData} cb={readoutCb} getTriggers={()=>glob.triggers}/> 
+					: null
+				}
 			</div>	
 		</div>
 

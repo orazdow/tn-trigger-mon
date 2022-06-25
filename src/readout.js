@@ -1,24 +1,39 @@
-import React, {useEffect} from 'react';
-import { Button, Card, Elevation, Classes } from "@blueprintjs/core";
+import React, {useEffect, useState} from 'react';
+import {Button, Card, MenuItem} from "@blueprintjs/core";
+import {Select2} from "@blueprintjs/select";
+
 
 const outerstyle = {
-	backgroundColor: '#383e47',
-	padding:'5px 3px 5px 3px'
-
-};
-
-const innerstyle = {
 	width: '100%',
 	minHeight: '120px',
 	backgroundColor: '#404854'
-
 };
 
-export default function Readout({data, cb}){
+const infostyle = {
+	width: '100%', 
+	float:'left',
+	clear:'both'
+};
+
+function Info({tnumbers, triggers}){
+	let numbers = tnumbers || [];
+	let num = numbers[0];
+	
+	return num? (
+
+		<div style={infostyle}> 
+			{num.tspeak}
+			{/*{triggers ? JSON.stringify(triggers,null,4):null}*/}
+		</div>
+
+	) : null;
+}
+
+export default function Readout({data, cb, getTriggers}){
+	const[triggers, seTriggers] = useState(getTriggers());
+
 	useEffect(()=>{
-		if(data.id){
-			console.log(data);
-		}
+		if(data.id) console.log(data);
 	},[data]);
 
 	const closeData = ()=>{
@@ -26,15 +41,15 @@ export default function Readout({data, cb}){
 	}
 
 	return(	
-		<Card style={innerstyle} className="bp4-navbar bp4-dark">
-			<div className="bp4-navbar-group bp4-align-right">		
+		<Card style={outerstyle} className="bp4-navbar bp4-dark bp4-running-text">
+			<div className="bp4-navbar-group bp4-align-right">	
 			<button className="bp4-button" 
-					id="closebutton"
 					onClick={closeData} 
 					style={{outline:'none', borderRadius: '100%'}}>
 					&#10799;
 			</button>
-		</div>		
+			</div>		
+			<Info tnumbers={data.truenumbers} triggers={triggers}/>
 		</Card>
 	);
 }

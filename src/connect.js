@@ -21,3 +21,9 @@ export default function connect(cb){
 	  cb(data);
 	});
 }
+
+export async function getTriggers(){
+	let url = 'http://gov.truenumbers.com:8082/v1/trigger-definitions?status=ACTIVE';
+	const response = await fetch(url,{headers:{'Accept': 'application/json'}});
+	return await response.json();
+}

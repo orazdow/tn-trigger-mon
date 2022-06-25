@@ -103,8 +103,7 @@ class Bar extends React.Component {
 	}
 
 	menuclick(e){
-		// console.log(this.menu.current.rect.num);
-		this.props.cb(this.menu.current.rect.num)
+		this.props.cb(this.menu.current.rect.num);
 	}
 
 	clear(){
