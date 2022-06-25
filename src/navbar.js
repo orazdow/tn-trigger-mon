@@ -6,7 +6,7 @@ export default function Navbar(props){
 		<div className="navbar" style={{margin: '0 auto', width: props.width}}>
 			<div className="bp4-navbar-group bp4-align-left">
 			{/*<div className="bp4-navbar-heading">Blueprint</div>*/}
-			<img src="truelogo.gif" width="65px"></img>
+			<img src="c2xLogo.png" width="65px"></img>
 			<span className="bp4-navbar-divider"></span>
 		</div>
 		<div className="bp4-navbar-group bp4-align-right">

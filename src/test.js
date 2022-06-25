@@ -8,15 +8,21 @@ function testdata(name, n){
 	let t = [];
 	for(let i = 0; i < k; i++)
 		t.push(testnum());
-	return {id: '1234', name: name, truenumbers: t};
+	return {id: '888_'+name, name: name, truenumbers: t};
 }
 
 export default function testEvent(cb){
 	document.addEventListener('keydown',(e)=>{
 		if(e.key == 't') cb(testdata('test', 1));
-		// if(e.key == 'y') cb(testdata('test', 2));
-		// if(e.key == 'u') cb(testdata('test', 4));
-		// if(e.key == 'i') cb(testdata('test', 8));
+		else if(e.key == 'y') cb(testdata('test', 2));
+		else if(e.key == 'u') cb(testdata('test', 4));
+		else if(e.key == 'i') cb(testdata('test', 8));
+		// else{
+		// 	let k = e.key.charCodeAt(0);
+		// 	if( k > 96 && k < 123){
+		// 		cb(testdata('test'+e.key, 4));
+		// 	}
+		// }
 
 		// if(e.key == 'g') cb(testdata('test_2', 1));
 		// if(e.key == 'h') cb(testdata('test_2', 2));

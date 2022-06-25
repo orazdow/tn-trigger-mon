@@ -9,7 +9,6 @@ const map = {};
 
 const SVGList = forwardRef((props, refList)=>{
 	refList.current = [];
-
 	const list = props.entries.map((e)=>{
 		return <SVGbar  key={e[1].id} 
 						data={e[1]}
@@ -18,17 +17,21 @@ const SVGList = forwardRef((props, refList)=>{
 						height={props.height}/>
 	});
 
-	return( <div style={{padding: '.1rem', marginTop: '5px'}} className={Classes.LIST}>
+	return( 
+		<div style={{padding: '.1rem', 
+					marginTop: '5px', 
+					maxHeight: '400px', 
+					overflow: 'scroll'}} 
+			className={Classes.LIST}>
 			<ul>{list}</ul>
-			</div>
+		</div>
 	);
 })
 
 function dispatchDisplay(reflist){
 	for(let el of reflist.current){
-		if(el && el.props.data.dispatch){
-			el.addRect(el.props.data);
-		}	
+		if(el && el.props.data.dispatch)
+			el.addRect(el.props.data);			
 	}
 	for(let key in map){
 		map[key].dispatch = false;
@@ -46,30 +49,29 @@ function Main(){
 	};
 
 	useEffect(()=>{
+		dispatchDisplay(listref);	
+	},[entries]);
+
+	useEffect(()=>{
 		connect(dataCb);
 		testEvent(dataCb);
-
 		document.querySelector('#clearbutton').onclick = (e)=>{
 			for(let key in map){
 				delete map[key];
 			}
 			setEntries(Object.entries(map));
 		}
-
 	},[]);
-
-	useEffect(()=>{
-		dispatchDisplay(listref);	
-	},[entries]);
 
 	return(
 
 		<div className="ui">    
-		<div className="spacer"></div>
-		<Card interactive={false} elevation={Elevation.TWO} style={{padding: '0px', minHeight:'30vh'}}>		
-		<Navbar width="800px"/>
-		<SVGList width={800} height={65} entries={entries} ref={listref}/>
-		</Card>	
+			<div className="spacer"></div>
+			<div 	className="bp4-card bp4-elevation-2"
+					style={{padding: '0px', minHeight:'30vh'}}>		
+				<Navbar width="800px"/>
+				<SVGList width={800} height={65} entries={entries} ref={listref}/>
+			</div>	
 		</div>
 
 	);
