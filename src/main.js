@@ -4,6 +4,7 @@ import Navbar from './navbar.js';
 import SVGbar from './svgbar.js';
 import connect from './connect.js';
 import testEvent from './test.js';
+import Readout from './readout.js';
 
 const map = {};
 
@@ -21,7 +22,7 @@ const SVGList = forwardRef((props, refList)=>{
 		<div style={{padding: '.1rem', 
 					marginTop: '5px', 
 					maxHeight: '400px', 
-					overflow: 'scroll'}} 
+					overflow: 'hidden auto'}} 
 			className={Classes.LIST}>
 			<ul>{list}</ul>
 		</div>
@@ -71,6 +72,7 @@ function Main(){
 					style={{padding: '0px', minHeight:'30vh'}}>		
 				<Navbar width="800px"/>
 				<SVGList width={800} height={65} entries={entries} ref={listref}/>
+				<Readout/>
 			</div>	
 		</div>
 
