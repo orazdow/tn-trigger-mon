@@ -6,8 +6,8 @@ import 'tippy.js/dist/tippy.css';
 const bw = 5; 
 
 const hoverstyle = {
-	top: '-50px',
-	left: '-50px',
+	top: '-250px',
+	left: '-250px',
 	position: 'absolute'
 }
 
@@ -23,6 +23,17 @@ const menustyle = {
 	userSelect: 'none',
 	borderRadius: '3px'
 }
+
+const labelstyle = {
+	position:'absolute', 
+	fontSize: '14px',
+	fontFamily: 'monospace',
+	fontWeight: '500',
+	backgroundColor:'#dadada72',
+	height:'17px',
+	paddingLeft:'2px',
+	paddingRight:'2px'
+};
 
 function numReport(data){
 	let str = '';
@@ -86,13 +97,14 @@ class Bar extends React.Component {
 
 	menuleave(){
 		let menu = this.menu.current;
-		menu.style.top = '-50px';
-		menu.style.left = '-50px';
+		menu.style.top = '-250px';
+		menu.style.left = '-250px';
 		menu.rect.stroke('none');
 	}
 
 	menuclick(e){
-		console.log(this.menu.current.rect.num);
+		// console.log(this.menu.current.rect.num);
+		this.props.cb(this.menu.current.rect.num)
 	}
 
 	clear(){
@@ -103,7 +115,7 @@ class Bar extends React.Component {
 		return(
 			<div>
 			<li ref={this.init} style={this.css}>
-				<div style={{position:'absolute', top: this.h-10+'px'}}>
+				<div style={{top: this.h-10+'px', ...labelstyle}}>
 					{this.props.data.name}
 				</div>	
 			</li>

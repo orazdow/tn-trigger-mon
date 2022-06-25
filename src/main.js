@@ -14,6 +14,7 @@ const SVGList = forwardRef((props, refList)=>{
 		return <SVGbar  key={e[1].id} 
 						data={e[1]}
 						ref={(el) => refList.current.push(el)}
+						cb={props.cb}
 						width={props.width-14}
 						height={props.height}/>
 	});
@@ -42,11 +43,16 @@ function dispatchDisplay(reflist){
 function Main(){
 	const listref = useRef([]);
 	const [entries, setEntries] = useState(Object.entries(map));
+	const [readoutData, setreadoutData] = useState({});
 
 	const dataCb = (data)=>{
 		data.dispatch = true
 		map[data.name] = data;
 		setEntries(Object.entries(map));
+	};
+
+	const readoutCb = (data)=>{
+		setreadoutData(data);
 	};
 
 	useEffect(()=>{
@@ -71,8 +77,8 @@ function Main(){
 			<div 	className="bp4-card bp4-elevation-2"
 					style={{padding: '0px', minHeight:'30vh'}}>		
 				<Navbar width="800px"/>
-				<SVGList width={800} height={65} entries={entries} ref={listref}/>
-				<Readout/>
+				<SVGList width={800} height={65} entries={entries} ref={listref} cb={readoutCb}/>
+				<Readout data={readoutData}/>
 			</div>	
 		</div>
 
