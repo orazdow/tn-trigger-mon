@@ -22,6 +22,7 @@ const SVGList = forwardRef((props, refList)=>{
 	return( 
 		<div style={{padding: '.1rem', 
 					marginTop: '5px', 
+					marginBottom: '4px',
 					maxHeight: '400px', 
 					overflow: 'hidden auto'}} 
 			className={Classes.LIST}>
@@ -78,7 +79,7 @@ function Main(){
 					style={{padding: '0px', minHeight:'30vh'}}>		
 				<Navbar width="800px"/>
 				<SVGList width={800} height={65} entries={entries} ref={listref} cb={readoutCb}/>
-				<Readout data={readoutData}/>
+				{readoutData.id ? <Readout data={readoutData} cb={readoutCb}/> : null}
 			</div>	
 		</div>
 
