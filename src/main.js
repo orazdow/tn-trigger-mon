@@ -36,7 +36,6 @@ function dispatchDisplay(reflist){
 }
 
 function Main(){
-
 	const listref = useRef([]);
 	const [entries, setEntries] = useState(Object.entries(map));
 
@@ -62,7 +61,6 @@ function Main(){
 	useEffect(()=>{
 		dispatchDisplay(listref);	
 	},[entries]);
-
 
 	return(
 

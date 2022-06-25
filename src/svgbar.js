@@ -1,5 +1,5 @@
 import React, {createRef} from 'react';
-import { SVG } from '@svgdotjs/svg.js';
+import {SVG} from '@svgdotjs/svg.js';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 
@@ -46,9 +46,9 @@ class Bar extends React.Component {
 		this.menuleave = this.menuleave.bind(this);
 		this.menuclick = this.menuclick.bind(this);
 		this.css = {position: 'relative',
-					 paddingLeft: '5px',
-					 paddingRight: '5px',
-					 borderBottom:'1px solid black'};
+					paddingLeft: '5px',
+					paddingRight: '5px',
+					borderBottom:'1px solid black'};
 		this.menu = createRef();
 		this.tref = createRef();
 	}
@@ -61,16 +61,16 @@ class Bar extends React.Component {
 	}
 
 	addRect(data){
-		let n = (data.truenumbers||[{}]).length;
 		let g = this.canvas.group();
-		let r = g.rect(bw, this.h).attr({ fill: '#f06' }).move(this.w,0);
+		let r = g.rect(bw, this.h).attr({fill: '#f06'}).move(this.w,0);
 		r.num = data;
-		if(n>1){
-        let h = this.h*.1*Math.min(n,10)
-			g.rect(bw*.5, h).attr({ fill: '#a00' }).move(this.w,this.h-h);
+		let n = (data.truenumbers||[{}]).length;
+		if(n > 1){
+        	let h = this.h*.1*Math.min(n, 10);
+			g.rect(bw*.5, h).attr({fill: '#a00'}).move(this.w, this.h-h);
 		}
 		g.mouseover(()=>{this.hover(r, this.canvas.node)});
-		g.animate(60000).ease('-').move(-bw,0);
+		g.animate(60000).ease('-').move(-bw-1, 0);
 	}
 
 	hover(rect, svg){
@@ -92,7 +92,6 @@ class Bar extends React.Component {
 	}
 
 	menuclick(e){
-		// this.menu.current.rect.stroke('#b06')
 		console.log(this.menu.current.rect.num);
 	}
 
