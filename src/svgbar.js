@@ -8,7 +8,6 @@ const bw = 5;
 const hoverstyle = {
 	top: '-50px',
 	left: '-50px',
-	// backgroundColor: 'purple',
 	position: 'absolute'
 }
 
@@ -46,7 +45,10 @@ class Bar extends React.Component {
 		this.hover = this.hover.bind(this);
 		this.menuleave = this.menuleave.bind(this);
 		this.menuclick = this.menuclick.bind(this);
-		this.css = {paddingLeft: '5px', width: this.w, height: this.h, ...this.props.style};
+		this.css = {position: 'relative',
+					 paddingLeft: '5px',
+					 paddingRight: '5px',
+					 borderBottom:'1px solid black'};
 		this.menu = createRef();
 		this.tref = createRef();
 	}
@@ -54,14 +56,21 @@ class Bar extends React.Component {
 	init(node){
 		if(node){
 			this.canvas = SVG().addTo(node).size(this.w, this.h);	
+			this.canvas.css({'padding-left':'1px','padding-right':'1px'});
 		}
 	}
 
 	addRect(data){
-		let r = this.canvas.rect(bw, this.h).attr({ fill: '#f06' }).move(this.w,0);
+		let n = (data.truenumbers||[{}]).length;
+		let g = this.canvas.group();
+		let r = g.rect(bw, this.h).attr({ fill: '#f06' }).move(this.w,0);
 		r.num = data;
-		r.mouseover(()=>{this.hover(r, this.canvas.node)});
-		r.animate(60000).ease('-').move(-bw,0);
+		if(n>1){
+        let h = this.h*.1*Math.min(n,10)
+			g.rect(bw*.5, h).attr({ fill: '#a00' }).move(this.w,this.h-h);
+		}
+		g.mouseover(()=>{this.hover(r, this.canvas.node)});
+		g.animate(60000).ease('-').move(-bw,0);
 	}
 
 	hover(rect, svg){
@@ -94,19 +103,21 @@ class Bar extends React.Component {
 	render(){
 		return(
 			<div>
-			<li ref={this.init} style={this.css}>{this.props.data.name}</li>
+			<li ref={this.init} style={this.css}>
+				<div style={{position:'absolute', top: this.h-10+'px'}}>
+					{this.props.data.name}
+				</div>	
+			</li>
 			<Tippy 
+				placement='right-end'
+				interactive={true}
 				content={
 					<div style={menustyle} 
 						 className="ttip" 
 						 ref={this.tref} 
 						 onClick={this.menuclick}>
 					</div>
-				}
-				placement='right-end'
-				interactive={true}
-				// delay={[0,200]}
-				>
+				}>
 				<div ref={this.menu} 
 					style={{width:bw+2+'px', height:this.h+'px',...hoverstyle}} 
 					onMouseLeave={this.menuleave}>		
@@ -115,8 +126,6 @@ class Bar extends React.Component {
 			</div>
 		);		
 	}
-
-
 }
 
 export default Bar;
