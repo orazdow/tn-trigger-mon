@@ -121,6 +121,7 @@ class Bar extends React.Component {
 			<Tippy 
 				placement='right-end'
 				interactive={true}
+				maxWidth='none'
 				content={
 					<div style={menustyle} 
 						 className="ttip" 

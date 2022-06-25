@@ -1,3 +1,5 @@
+import res from '../res.json';
+
 function testnum(){
 	let s = String.fromCharCode(Math.random()*50+60);
 	return {id:'888', tspeak: s+' has x = y', subject:s};
@@ -27,6 +29,7 @@ export default function testEvent(cb){
 		else if(e.key == 'h') cb(testdata('test_2', 2));
 		else if(e.key == 'j') cb(testdata('test_2', 4));
 		else if(e.key == 'k') cb(testdata('test_2', 8));
+		else if(e.key == 'w') cb(res);
 		else{
 			if(e.key == 'a'||e.key == 's'||e.key == 'd'||e.key == 'f'){
 				cb(testdata('test'+e.key, 4));
