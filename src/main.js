@@ -88,9 +88,9 @@ function Main(){
 		<div className="ui">    
 			<div className="spacer"></div>
 			<div 	className="bp4-card bp4-elevation-2"
-					style={{padding: '0px', minHeight:'30vh'}}>		
-				<Navbar width="800px"/>
-				<SVGList width={800} height={65} entries={entries} ref={listref} cb={readoutCb}/>
+					style={{padding: '0px', minHeight:'30vh', maxWidth: '900px'}}>		
+				<Navbar width="900px"/>
+				<SVGList width={900} height={60} entries={entries} ref={listref} cb={readoutCb}/>
 				{readoutData.id ? 
 					<Readout data={readoutData} cb={readoutCb} getTriggers={()=>glob.triggers}/> 
 					: null

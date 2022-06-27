@@ -2,7 +2,8 @@ import res from '../res.json';
 
 function testnum(){
 	let s = String.fromCharCode(Math.random()*50+60);
-	return {id:'888', tspeak: s+' has x = y', subject:s};
+	let i = Math.random();
+	return {_id: '888'+i, tspeak: s+' has x = y', subject:s};
 }
 
 function testdata(name, n){
