@@ -74,7 +74,7 @@ function Main(){
 
 	useEffect(()=>{
 		connect(dataCb);
-		testEvent(dataCb);
+		// testEvent(dataCb);
 		document.querySelector('#clearbutton').onclick = (e)=>{
 			for(let key in map){
 				delete map[key];
